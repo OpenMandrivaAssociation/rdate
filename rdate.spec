@@ -6,7 +6,6 @@ License:	GPL
 Group:		System/Configuration/Other
 URL:		ftp://people.redhat.com/sopwith
 Source0:	ftp://people.redhat.com/sopwith/%{name}-%{version}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The rdate utility retrieves the date and time from another machine on your
