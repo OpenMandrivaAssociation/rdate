@@ -1,11 +1,12 @@
 Summary:	Retrieving the date and time from another machine on your network
 Name:		rdate
 Version:	1.4
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	GPL
 Group:		System/Configuration/Other
 URL:		ftp://people.redhat.com/sopwith
 Source0:	ftp://people.redhat.com/sopwith/%{name}-%{version}.tar.bz2
+Patch0:		rdate-1.4-udp.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -17,14 +18,19 @@ milliseconds, get the xntpd program instead.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%make CFLAGS="$RPM_OPT_FLAGS -Wall" CC="gcc"
+%make CFLAGS="$RPM_OPT_FLAGS -Wall -DINET6" CC="gcc"
 
 %install
 rm -rf %{buildroot}
-install -m755 -s %{name} -D %{buildroot}%{_bindir}/%{name}
-install -m644 %{name}.1 -D %{buildroot}%{_mandir}/man1/%{name}.1
+
+install -d %{buildroot}%{_bindir}
+install -d %{buildroot}%{_mandir}/man1
+
+install -m0755 %{name} %{buildroot}%{_bindir}/%{name}
+install -m0644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 %clean
 rm -rf %{buildroot}
@@ -33,5 +39,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
-
-
