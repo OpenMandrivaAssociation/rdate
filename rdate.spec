@@ -1,7 +1,7 @@
 Summary:	Retrieving the date and time from another machine on your network
 Name:		rdate
 Version:	1.4
-Release:	22
+Release:	23
 License:	GPLv2
 Group:		System/Configuration/Other
 Url:		ftp://people.redhat.com/sopwith
