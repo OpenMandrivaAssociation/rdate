@@ -1,13 +1,12 @@
 Summary:	Retrieving the date and time from another machine on your network
 Name:		rdate
-Version:	1.4
-Release:	24
+Version:	1.5
+Release:	1
 License:	GPLv2
 Group:		System/Configuration/Other
-Url:		ftp://people.redhat.com/sopwith
-Source0:	ftp://people.redhat.com/sopwith/%{name}-%{version}.tar.bz2
-Patch0:		rdate-1.4-udp.patch
-Patch1:		rdate-1.4-format_not_a_string_literal_and_no_format_arguments.diff
+Url:		https://www.aelius.com/njh/rdate
+Source0:	https://fossies.org/linux/misc/old/%{name}-%{version}.tar.gz
+Patch0:		rdate-1.4-format_not_a_string_literal_and_no_format_arguments.diff
 
 %description
 The rdate utility retrieves the date and time from another machine on your
@@ -17,19 +16,15 @@ Note that rdate isn't scrupulously accurate. If you are worried about
 milliseconds, get the xntpd program instead.
 
 %prep
-%setup -q
-%patch0 -p1 -b .udp
-%patch1 -p0 -b .format_not_a_string_literal_and_no_format_arguments
+%autosetup -p1
 
 %build
-%make CFLAGS="%{optflags} -Wall -DINET6" CC="%{__cc}" LDFLAGS="%{ldflags}"
+sh autogen.sh
+%configure
+%make_build CFLAGS="%{optflags} -Wall -DINET6" CC="%{__cc}" LDFLAGS="%{ldflags}"
 
 %install
-install -d %{buildroot}%{_bindir}
-install -d %{buildroot}%{_mandir}/man1
-
-install -m0755 %{name} %{buildroot}%{_bindir}/%{name}
-install -m0644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+%make_install
 
 %files
 %{_bindir}/%{name}
