@@ -1,7 +1,7 @@
 Summary:	Retrieving the date and time from another machine on your network
 Name:		rdate
 Version:	1.5
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		System/Configuration/Other
 Url:		https://www.aelius.com/njh/rdate
