@@ -8,6 +8,11 @@ Url:		https://www.aelius.com/njh/rdate
 Source0:	https://fossies.org/linux/misc/old/%{name}-%{version}.tar.gz
 Patch0:		rdate-1.4-format_not_a_string_literal_and_no_format_arguments.diff
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 %description
 The rdate utility retrieves the date and time from another machine on your
 network, using the protocol described in RFC 868. If you run rdate as root, it
